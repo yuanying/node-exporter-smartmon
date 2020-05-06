@@ -1,29 +1,75 @@
 name: Publish Docker image
+
 on:
   push:
     branches:
-    - master
-jobs:
+      - 'master'
+      - 'v*'
+    tags:
+      - 'v*'
+    paths:
+      - '.github/workflows/docker.yml'
+      - 'Dockerfile'
+      - 'smartmon.sh'
 
+jobs:
   build:
-    name: build and publish
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-
-    - name: Set up Docker Buildx
-      id: buildx
-      uses: crazy-max/ghaction-docker-buildx@v1
-      with:
-        version: latest
-
-    - name: Login DockerHub
-      run: |
-        echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-
-    - name: Build and Publish
-      run: |
-        docker buildx build \
-          --push \
-          --platform linux/arm64,linux/arm/v7,linux/amd64 \
-          -t ${{ github.repository }}:latest .
+      -
+        name: Prepare
+        id: prepare
+        run: |
+          if [[ $GITHUB_REF == refs/tags/* ]]; then
+            echo ::set-output name=version::${GITHUB_REF#refs/tags/v}
+          else
+            echo ::set-output name=version::snapshot
+          fi
+          echo ::set-output name=build_date::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+          echo ::set-output name=docker_platforms::linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64,linux/386,linux/ppc64le,linux/s390x
+          echo ::set-output name=docker_username::yuanying
+          echo ::set-output name=docker_image::yuanying/${{ github.event.repository.name }}
+      -
+        # https://github.com/crazy-max/ghaction-docker-buildx
+        name: Set up Docker Buildx
+        uses: crazy-max/ghaction-docker-buildx@v1
+        with:
+          version: latest
+      -
+        # https://github.com/actions/checkout
+        name: Checkout
+        uses: actions/checkout@v1
+      -
+        name: Docker Buildx (no push)
+        run: |
+          docker buildx build --platform ${{ steps.prepare.outputs.docker_platforms }} \
+            --output "type=image,push=false" \
+            --tag "${{ steps.prepare.outputs.docker_image }}:latest" \
+            --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
+            --file Dockerfile .
+      -
+        name: Docker Login
+        if: success() && startsWith(github.ref, 'refs/tags/v')
+        env:
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          echo "${DOCKER_PASSWORD}" | docker login --username "${{ steps.prepare.outputs.docker_username }}" --password-stdin
+      -
+        name: Docker Buildx (push)
+        if: success() && startsWith(github.ref, 'refs/tags/v')
+        run: |
+          docker buildx build --platform ${{ steps.prepare.outputs.docker_platforms }} \
+            --output "type=image,push=true" \
+            --tag "${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}" \
+            --tag "${{ steps.prepare.outputs.docker_image }}:latest" \
+            --file Dockerfile .
+      -
+        name: Docker Check Manifest
+        if: always() && startsWith(github.ref, 'refs/tags/v')
+        run: |
+          docker run --rm mplatform/mquery ${{ steps.prepare.outputs.docker_image }}:${{ steps.prepare.outputs.version }}
+      -
+        name: Clear
+        if: always() && startsWith(github.ref, 'refs/tags/v')
+        run: |
+          rm -f ${HOME}/.docker/config.json
