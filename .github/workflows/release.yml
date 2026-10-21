@@ -1,0 +1,63 @@
+name: Weekly release
+
+# Once a week, releases the next patch version when the files the image
+# is built from changed since the latest vX.Y.Z tag. The image is
+# published first and the tag pushed after it, so that no tag is left
+# without its image.
+on:
+  schedule:
+    # Every Monday at 09:00 JST.
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: release
+
+jobs:
+  check:
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    outputs:
+      release: ${{ steps.next.outputs.release }}
+      tag: ${{ steps.next.outputs.tag }}
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      -
+        name: Decide the next version
+        id: next
+        run: .github/scripts/next-release.sh Dockerfile smartmon.sh >> "$GITHUB_OUTPUT"
+
+  publish:
+    needs: check
+    if: needs.check.outputs.release == 'true'
+    permissions:
+      contents: read
+      packages: write
+    uses: ./.github/workflows/docker.yml
+    with:
+      tag: ${{ needs.check.outputs.tag }}
+
+  tag:
+    needs: [check, publish]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v7
+      -
+        name: Push the tag
+        env:
+          TAG: ${{ needs.check.outputs.tag }}
+        run: |
+          git tag "$TAG" "$GITHUB_SHA"
+          git push origin "refs/tags/$TAG"

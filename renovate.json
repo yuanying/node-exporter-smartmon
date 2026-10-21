@@ -1,0 +1,28 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "description": "A version is proposed only once it has been public for seven days, so that a release pulled or fixed in its first week never reaches a branch. internalChecksFilter is already strict by default; it is stated so that the wait is read here as holding back the branch and the pull request themselves, not only a status check on them",
+  "extends": ["config:recommended", ":semanticCommitTypeAll(chore)"],
+  "timezone": "Asia/Tokyo",
+  "dependencyDashboard": true,
+  "minimumReleaseAge": "7 days",
+  "internalChecksFilter": "strict",
+  "platformAutomerge": false,
+  "packageRules": [
+    {
+      "description": "Patch releases and digest changes are merged once the pull request's checks pass: they carry fixes and rebuilds rather than new behaviour, and the weekly release then ships them as the next patch version without anyone at the keyboard. Renovate merges them itself rather than through the platform's auto-merge, which this repository leaves off; a branch with no checks is not green, so it is never merged blind. Minor and major updates only open a pull request",
+      "matchUpdateTypes": ["patch", "digest", "pin", "pinDigest"],
+      "automerge": true
+    },
+    {
+      "description": "The base image is named by a tag that keeps moving (alpine:latest), so a checkout does not say which image a release was built from. Pinning the digest makes the Dockerfile say it, and leaves Renovate to move the digest when the tag is pushed again. The first pin is merged like any digest change",
+      "matchManagers": ["dockerfile"],
+      "pinDigests": true
+    },
+    {
+      "description": "Workflows are already read by the github-actions manager. Grouping them keeps a handful of actions from arriving as a handful of pull requests, since they are updated together and reviewed the same way",
+      "matchManagers": ["github-actions"],
+      "matchDepTypes": ["action"],
+      "groupName": "github-actions"
+    }
+  ]
+}
