@@ -11,6 +11,28 @@ $ docker run --rm --name node-exporter-smartmon \
     mv /var/lib/node-exporter/smartmon.prom.tmp /var/lib/node-exporter/smartmon.prom
 ```
 
+## Disks behind a USB bridge
+
+`smartctl --scan-open` leaves out the disks behind a USB bridge it does
+not know. The script also reads every disk under `/sys/block` that is
+attached through USB, has a medium, and is not in `--scan-open`, with
+the first type in `SMARTMON_USB_TYPES` the disk answers to
+(`smartctl -n standby -i -d <type>`). A spun down disk is not woken up.
+
+| Variable | Default | |
+|---|---|---|
+| `SMARTMON_USB_TYPES` | `sat` | Types to try, separated by spaces, e.g. `sat sat,12`. `sat`, `sat,*` and `usb*` are read as ATA. Set it empty to read no disk `--scan-open` does not list |
+
+## Tests
+
+```bash
+$ test/smartmon_test.sh
+```
+
+The test runs the script with `test/fake-smartctl`, which prints the
+smartctl outputs in `test/cases`, and compares what it prints with
+`test/expected`. `UPDATE_EXPECTED=1` rewrites `test/expected`.
+
 ## Example systemd units
 
 ### node-exporter-smartmon.service

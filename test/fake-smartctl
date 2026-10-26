@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Stands in for smartctl in smartmon_test.sh. Prints the fixture of the
+# case for the command line, and fails as smartctl does when the device
+# cannot be opened (no fixture).
+#   -V                         -> version
+#   --scan-open                -> scan-open
+#   -n standby -d TYPE DEV     -> <basename DEV>.TYPE.standby
+#   -n standby -i -d TYPE DEV  -> <basename DEV>.TYPE.probe
+#   -i -H -d TYPE DEV          -> <basename DEV>.TYPE.info
+#   -A -d TYPE DEV             -> <basename DEV>.TYPE.attrs
+# A fixture exits 0 unless a <fixture>.exit file holds its exit status.
+set -u
+dir=$FAKE_SMARTCTL_FIXTURES
+
+case $1 in
+-V) cat "$dir/version"; exit 0 ;;
+--scan-open) cat "$dir/scan-open"; exit 0 ;;
+esac
+
+standby='' info='' attrs='' type='' dev=''
+while (($#)); do
+  case $1 in
+  -n) standby=1; shift ;;
+  -i) info=1 ;;
+  -A) attrs=1 ;;
+  -H) ;;
+  -d) type=$2; shift ;;
+  *) dev=$1 ;;
+  esac
+  shift
+done
+
+if [[ $standby && $info ]]; then
+  mode=probe
+elif [[ $standby ]]; then
+  mode=standby
+elif [[ $info ]]; then
+  mode=info
+elif [[ $attrs ]]; then
+  mode=attrs
+else
+  exit 64
+fi
+
+fixture="$dir/$(basename "$dev").$type.$mode"
+[[ -f $fixture ]] || exit 2
+cat "$fixture"
+[[ -f $fixture.exit ]] && exit "$(cat "$fixture.exit")"
+exit 0

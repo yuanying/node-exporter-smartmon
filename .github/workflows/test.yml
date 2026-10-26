@@ -20,3 +20,18 @@ jobs:
       -
         name: Test the weekly release's decision
         run: .github/scripts/next-release_test.sh
+
+  smartmon:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v7
+      -
+        # In the image's base, so that its busybox tools run the script
+        name: Test smartmon.sh against the smartctl fixtures
+        run: |
+          docker run --rm -v "$PWD:/src:ro" alpine:latest \
+            sh -c 'apk --no-cache add bash > /dev/null && /src/test/smartmon_test.sh'

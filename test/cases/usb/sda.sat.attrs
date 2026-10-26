@@ -1,0 +1,38 @@
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-6.8.0-147-generic] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+SMART Attributes Data Structure revision number: 1
+Vendor Specific SMART Attributes with Thresholds:
+ID# ATTRIBUTE_NAME          FLAG     VALUE WORST THRESH TYPE      UPDATED  WHEN_FAILED RAW_VALUE
+  1 Raw_Read_Error_Rate     0x0032   100   100   050    Old_age   Always       -       0
+  5 Reallocated_Sector_Ct   0x0032   100   100   050    Old_age   Always       -       0
+  9 Power_On_Hours          0x0032   100   100   050    Old_age   Always       -       69466
+ 12 Power_Cycle_Count       0x0032   100   100   050    Old_age   Always       -       42
+160 Unknown_Attribute       0x0032   100   100   050    Old_age   Always       -       0
+161 Unknown_Attribute       0x0033   100   100   050    Pre-fail  Always       -       100
+163 Unknown_Attribute       0x0032   100   100   050    Old_age   Always       -       9
+164 Unknown_Attribute       0x0032   100   100   050    Old_age   Always       -       84416
+165 Unknown_Attribute       0x0032   100   100   050    Old_age   Always       -       278
+166 Unknown_Attribute       0x0032   100   100   050    Old_age   Always       -       6
+167 Unknown_Attribute       0x0032   100   100   050    Old_age   Always       -       171
+168 Unknown_Attribute       0x0032   100   100   050    Old_age   Always       -       7000
+169 Unknown_Attribute       0x0032   100   100   050    Old_age   Always       -       98
+175 Program_Fail_Count_Chip 0x0032   100   100   050    Old_age   Always       -       0
+176 Erase_Fail_Count_Chip   0x0032   100   100   050    Old_age   Always       -       0
+177 Wear_Leveling_Count     0x0032   100   100   050    Old_age   Always       -       0
+178 Used_Rsvd_Blk_Cnt_Chip  0x0032   100   100   050    Old_age   Always       -       0
+181 Program_Fail_Cnt_Total  0x0032   100   100   050    Old_age   Always       -       0
+182 Erase_Fail_Count_Total  0x0032   100   100   050    Old_age   Always       -       0
+192 Power-Off_Retract_Count 0x0032   100   100   050    Old_age   Always       -       27
+194 Temperature_Celsius     0x0022   100   100   050    Old_age   Always       -       40
+195 Hardware_ECC_Recovered  0x0032   100   100   050    Old_age   Always       -       37604
+196 Reallocated_Event_Count 0x0032   100   100   050    Old_age   Always       -       0
+197 Current_Pending_Sector  0x0032   100   100   050    Old_age   Always       -       0
+198 Offline_Uncorrectable   0x0032   100   100   050    Old_age   Always       -       0
+199 UDMA_CRC_Error_Count    0x0032   100   100   050    Old_age   Always       -       0
+232 Available_Reservd_Space 0x0032   100   100   050    Old_age   Always       -       100
+241 Total_LBAs_Written      0x0030   100   100   050    Old_age   Offline      -       142511
+242 Total_LBAs_Read         0x0030   100   100   050    Old_age   Offline      -       14813
+245 Unknown_Attribute       0x0032   100   100   050    Old_age   Always       -       212013
+

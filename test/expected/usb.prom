@@ -1,0 +1,391 @@
+# HELP smartmon_smartctl_version SMART metric smartctl_version
+# TYPE smartmon_smartctl_version gauge
+smartmon_smartctl_version{version="7.2"} 1
+# HELP smartmon_current_pending_sector_raw_value SMART metric current_pending_sector_raw_value
+# TYPE smartmon_current_pending_sector_raw_value gauge
+smartmon_current_pending_sector_raw_value{disk="/dev/sda",type="sat",smart_id="197"} 0.000000e+00
+smartmon_current_pending_sector_raw_value{disk="/dev/sdb",type="sat",smart_id="197"} 0.000000e+00
+smartmon_current_pending_sector_raw_value{disk="/dev/sdd",type="sat,12",smart_id="197"} 0.000000e+00
+# HELP smartmon_current_pending_sector_threshold SMART metric current_pending_sector_threshold
+# TYPE smartmon_current_pending_sector_threshold gauge
+smartmon_current_pending_sector_threshold{disk="/dev/sda",type="sat",smart_id="197"} 50
+smartmon_current_pending_sector_threshold{disk="/dev/sdb",type="sat",smart_id="197"} 0
+smartmon_current_pending_sector_threshold{disk="/dev/sdd",type="sat,12",smart_id="197"} 0
+# HELP smartmon_current_pending_sector_value SMART metric current_pending_sector_value
+# TYPE smartmon_current_pending_sector_value gauge
+smartmon_current_pending_sector_value{disk="/dev/sda",type="sat",smart_id="197"} 100
+smartmon_current_pending_sector_value{disk="/dev/sdb",type="sat",smart_id="197"} 200
+smartmon_current_pending_sector_value{disk="/dev/sdd",type="sat,12",smart_id="197"} 200
+# HELP smartmon_current_pending_sector_worst SMART metric current_pending_sector_worst
+# TYPE smartmon_current_pending_sector_worst gauge
+smartmon_current_pending_sector_worst{disk="/dev/sda",type="sat",smart_id="197"} 100
+smartmon_current_pending_sector_worst{disk="/dev/sdb",type="sat",smart_id="197"} 200
+smartmon_current_pending_sector_worst{disk="/dev/sdd",type="sat,12",smart_id="197"} 200
+# HELP smartmon_device_active SMART metric device_active
+# TYPE smartmon_device_active gauge
+smartmon_device_active{disk="/dev/sda",type="sat"} 1
+smartmon_device_active{disk="/dev/sdb",type="sat"} 1
+smartmon_device_active{disk="/dev/sdc",type="sat"} 0
+smartmon_device_active{disk="/dev/sdd",type="sat,12"} 1
+# HELP smartmon_device_info SMART metric device_info
+# TYPE smartmon_device_info gauge
+smartmon_device_info{disk="/dev/sda",type="sat",vendor="",product="",revision="",lun_id="",model_family="",device_model="TCSUNBOW N4 120GB",serial_number="0000000000001",firmware_version="R0522A0"} 1
+smartmon_device_info{disk="/dev/sdb",type="sat",vendor="",product="",revision="",lun_id="",model_family="",device_model="WDC WD80EAZZ-00BKLB0",serial_number="WD-CA00000001",firmware_version="80.00A80"} 1
+smartmon_device_info{disk="/dev/sdd",type="sat,12",vendor="",product="",revision="",lun_id="",model_family="",device_model="WDC WD80EAZZ-00BKLB0",serial_number="WD-CA00000003",firmware_version="80.00A80"} 1
+# HELP smartmon_device_smart_available SMART metric device_smart_available
+# TYPE smartmon_device_smart_available gauge
+smartmon_device_smart_available{disk="/dev/sda",type="sat"} 1
+smartmon_device_smart_available{disk="/dev/sdb",type="sat"} 1
+smartmon_device_smart_available{disk="/dev/sdd",type="sat,12"} 1
+# HELP smartmon_device_smart_enabled SMART metric device_smart_enabled
+# TYPE smartmon_device_smart_enabled gauge
+smartmon_device_smart_enabled{disk="/dev/sda",type="sat"} 1
+smartmon_device_smart_enabled{disk="/dev/sdb",type="sat"} 1
+smartmon_device_smart_enabled{disk="/dev/sdd",type="sat,12"} 1
+# HELP smartmon_device_smart_healthy SMART metric device_smart_healthy
+# TYPE smartmon_device_smart_healthy gauge
+smartmon_device_smart_healthy{disk="/dev/sda",type="sat"} 1
+smartmon_device_smart_healthy{disk="/dev/sdb",type="sat"} 1
+smartmon_device_smart_healthy{disk="/dev/sdd",type="sat,12"} 1
+# HELP smartmon_erase_fail_count_chip_raw_value SMART metric erase_fail_count_chip_raw_value
+# TYPE smartmon_erase_fail_count_chip_raw_value gauge
+smartmon_erase_fail_count_chip_raw_value{disk="/dev/sda",type="sat",smart_id="176"} 0.000000e+00
+# HELP smartmon_erase_fail_count_chip_threshold SMART metric erase_fail_count_chip_threshold
+# TYPE smartmon_erase_fail_count_chip_threshold gauge
+smartmon_erase_fail_count_chip_threshold{disk="/dev/sda",type="sat",smart_id="176"} 50
+# HELP smartmon_erase_fail_count_chip_value SMART metric erase_fail_count_chip_value
+# TYPE smartmon_erase_fail_count_chip_value gauge
+smartmon_erase_fail_count_chip_value{disk="/dev/sda",type="sat",smart_id="176"} 100
+# HELP smartmon_erase_fail_count_chip_worst SMART metric erase_fail_count_chip_worst
+# TYPE smartmon_erase_fail_count_chip_worst gauge
+smartmon_erase_fail_count_chip_worst{disk="/dev/sda",type="sat",smart_id="176"} 100
+# HELP smartmon_erase_fail_count_total_raw_value SMART metric erase_fail_count_total_raw_value
+# TYPE smartmon_erase_fail_count_total_raw_value gauge
+smartmon_erase_fail_count_total_raw_value{disk="/dev/sda",type="sat",smart_id="182"} 0.000000e+00
+# HELP smartmon_erase_fail_count_total_threshold SMART metric erase_fail_count_total_threshold
+# TYPE smartmon_erase_fail_count_total_threshold gauge
+smartmon_erase_fail_count_total_threshold{disk="/dev/sda",type="sat",smart_id="182"} 50
+# HELP smartmon_erase_fail_count_total_value SMART metric erase_fail_count_total_value
+# TYPE smartmon_erase_fail_count_total_value gauge
+smartmon_erase_fail_count_total_value{disk="/dev/sda",type="sat",smart_id="182"} 100
+# HELP smartmon_erase_fail_count_total_worst SMART metric erase_fail_count_total_worst
+# TYPE smartmon_erase_fail_count_total_worst gauge
+smartmon_erase_fail_count_total_worst{disk="/dev/sda",type="sat",smart_id="182"} 100
+# HELP smartmon_hardware_ecc_recovered_raw_value SMART metric hardware_ecc_recovered_raw_value
+# TYPE smartmon_hardware_ecc_recovered_raw_value gauge
+smartmon_hardware_ecc_recovered_raw_value{disk="/dev/sda",type="sat",smart_id="195"} 3.760400e+04
+# HELP smartmon_hardware_ecc_recovered_threshold SMART metric hardware_ecc_recovered_threshold
+# TYPE smartmon_hardware_ecc_recovered_threshold gauge
+smartmon_hardware_ecc_recovered_threshold{disk="/dev/sda",type="sat",smart_id="195"} 50
+# HELP smartmon_hardware_ecc_recovered_value SMART metric hardware_ecc_recovered_value
+# TYPE smartmon_hardware_ecc_recovered_value gauge
+smartmon_hardware_ecc_recovered_value{disk="/dev/sda",type="sat",smart_id="195"} 100
+# HELP smartmon_hardware_ecc_recovered_worst SMART metric hardware_ecc_recovered_worst
+# TYPE smartmon_hardware_ecc_recovered_worst gauge
+smartmon_hardware_ecc_recovered_worst{disk="/dev/sda",type="sat",smart_id="195"} 100
+# HELP smartmon_load_cycle_count_raw_value SMART metric load_cycle_count_raw_value
+# TYPE smartmon_load_cycle_count_raw_value gauge
+smartmon_load_cycle_count_raw_value{disk="/dev/sdb",type="sat",smart_id="193"} 1.203750e+05
+smartmon_load_cycle_count_raw_value{disk="/dev/sdd",type="sat,12",smart_id="193"} 1.199150e+05
+# HELP smartmon_load_cycle_count_threshold SMART metric load_cycle_count_threshold
+# TYPE smartmon_load_cycle_count_threshold gauge
+smartmon_load_cycle_count_threshold{disk="/dev/sdb",type="sat",smart_id="193"} 0
+smartmon_load_cycle_count_threshold{disk="/dev/sdd",type="sat,12",smart_id="193"} 0
+# HELP smartmon_load_cycle_count_value SMART metric load_cycle_count_value
+# TYPE smartmon_load_cycle_count_value gauge
+smartmon_load_cycle_count_value{disk="/dev/sdb",type="sat",smart_id="193"} 160
+smartmon_load_cycle_count_value{disk="/dev/sdd",type="sat,12",smart_id="193"} 161
+# HELP smartmon_load_cycle_count_worst SMART metric load_cycle_count_worst
+# TYPE smartmon_load_cycle_count_worst gauge
+smartmon_load_cycle_count_worst{disk="/dev/sdb",type="sat",smart_id="193"} 160
+smartmon_load_cycle_count_worst{disk="/dev/sdd",type="sat,12",smart_id="193"} 161
+# HELP smartmon_offline_uncorrectable_raw_value SMART metric offline_uncorrectable_raw_value
+# TYPE smartmon_offline_uncorrectable_raw_value gauge
+smartmon_offline_uncorrectable_raw_value{disk="/dev/sda",type="sat",smart_id="198"} 0.000000e+00
+smartmon_offline_uncorrectable_raw_value{disk="/dev/sdb",type="sat",smart_id="198"} 0.000000e+00
+smartmon_offline_uncorrectable_raw_value{disk="/dev/sdd",type="sat,12",smart_id="198"} 0.000000e+00
+# HELP smartmon_offline_uncorrectable_threshold SMART metric offline_uncorrectable_threshold
+# TYPE smartmon_offline_uncorrectable_threshold gauge
+smartmon_offline_uncorrectable_threshold{disk="/dev/sda",type="sat",smart_id="198"} 50
+smartmon_offline_uncorrectable_threshold{disk="/dev/sdb",type="sat",smart_id="198"} 0
+smartmon_offline_uncorrectable_threshold{disk="/dev/sdd",type="sat,12",smart_id="198"} 0
+# HELP smartmon_offline_uncorrectable_value SMART metric offline_uncorrectable_value
+# TYPE smartmon_offline_uncorrectable_value gauge
+smartmon_offline_uncorrectable_value{disk="/dev/sda",type="sat",smart_id="198"} 100
+smartmon_offline_uncorrectable_value{disk="/dev/sdb",type="sat",smart_id="198"} 100
+smartmon_offline_uncorrectable_value{disk="/dev/sdd",type="sat,12",smart_id="198"} 100
+# HELP smartmon_offline_uncorrectable_worst SMART metric offline_uncorrectable_worst
+# TYPE smartmon_offline_uncorrectable_worst gauge
+smartmon_offline_uncorrectable_worst{disk="/dev/sda",type="sat",smart_id="198"} 100
+smartmon_offline_uncorrectable_worst{disk="/dev/sdb",type="sat",smart_id="198"} 253
+smartmon_offline_uncorrectable_worst{disk="/dev/sdd",type="sat,12",smart_id="198"} 253
+# HELP smartmon_power_cycle_count_raw_value SMART metric power_cycle_count_raw_value
+# TYPE smartmon_power_cycle_count_raw_value gauge
+smartmon_power_cycle_count_raw_value{disk="/dev/sda",type="sat",smart_id="12"} 4.200000e+01
+smartmon_power_cycle_count_raw_value{disk="/dev/sdb",type="sat",smart_id="12"} 9.000000e+00
+smartmon_power_cycle_count_raw_value{disk="/dev/sdd",type="sat,12",smart_id="12"} 8.000000e+00
+# HELP smartmon_power_cycle_count_threshold SMART metric power_cycle_count_threshold
+# TYPE smartmon_power_cycle_count_threshold gauge
+smartmon_power_cycle_count_threshold{disk="/dev/sda",type="sat",smart_id="12"} 50
+smartmon_power_cycle_count_threshold{disk="/dev/sdb",type="sat",smart_id="12"} 0
+smartmon_power_cycle_count_threshold{disk="/dev/sdd",type="sat,12",smart_id="12"} 0
+# HELP smartmon_power_cycle_count_value SMART metric power_cycle_count_value
+# TYPE smartmon_power_cycle_count_value gauge
+smartmon_power_cycle_count_value{disk="/dev/sda",type="sat",smart_id="12"} 100
+smartmon_power_cycle_count_value{disk="/dev/sdb",type="sat",smart_id="12"} 100
+smartmon_power_cycle_count_value{disk="/dev/sdd",type="sat,12",smart_id="12"} 100
+# HELP smartmon_power_cycle_count_worst SMART metric power_cycle_count_worst
+# TYPE smartmon_power_cycle_count_worst gauge
+smartmon_power_cycle_count_worst{disk="/dev/sda",type="sat",smart_id="12"} 100
+smartmon_power_cycle_count_worst{disk="/dev/sdb",type="sat",smart_id="12"} 100
+smartmon_power_cycle_count_worst{disk="/dev/sdd",type="sat,12",smart_id="12"} 100
+# HELP smartmon_power_on_hours_raw_value SMART metric power_on_hours_raw_value
+# TYPE smartmon_power_on_hours_raw_value gauge
+smartmon_power_on_hours_raw_value{disk="/dev/sda",type="sat",smart_id="9"} 6.946600e+04
+smartmon_power_on_hours_raw_value{disk="/dev/sdb",type="sat",smart_id="9"} 3.593200e+04
+smartmon_power_on_hours_raw_value{disk="/dev/sdd",type="sat,12",smart_id="9"} 3.593100e+04
+# HELP smartmon_power_on_hours_threshold SMART metric power_on_hours_threshold
+# TYPE smartmon_power_on_hours_threshold gauge
+smartmon_power_on_hours_threshold{disk="/dev/sda",type="sat",smart_id="9"} 50
+smartmon_power_on_hours_threshold{disk="/dev/sdb",type="sat",smart_id="9"} 0
+smartmon_power_on_hours_threshold{disk="/dev/sdd",type="sat,12",smart_id="9"} 0
+# HELP smartmon_power_on_hours_value SMART metric power_on_hours_value
+# TYPE smartmon_power_on_hours_value gauge
+smartmon_power_on_hours_value{disk="/dev/sda",type="sat",smart_id="9"} 100
+smartmon_power_on_hours_value{disk="/dev/sdb",type="sat",smart_id="9"} 51
+smartmon_power_on_hours_value{disk="/dev/sdd",type="sat,12",smart_id="9"} 51
+# HELP smartmon_power_on_hours_worst SMART metric power_on_hours_worst
+# TYPE smartmon_power_on_hours_worst gauge
+smartmon_power_on_hours_worst{disk="/dev/sda",type="sat",smart_id="9"} 100
+smartmon_power_on_hours_worst{disk="/dev/sdb",type="sat",smart_id="9"} 51
+smartmon_power_on_hours_worst{disk="/dev/sdd",type="sat,12",smart_id="9"} 51
+# HELP smartmon_program_fail_cnt_total_raw_value SMART metric program_fail_cnt_total_raw_value
+# TYPE smartmon_program_fail_cnt_total_raw_value gauge
+smartmon_program_fail_cnt_total_raw_value{disk="/dev/sda",type="sat",smart_id="181"} 0.000000e+00
+# HELP smartmon_program_fail_cnt_total_threshold SMART metric program_fail_cnt_total_threshold
+# TYPE smartmon_program_fail_cnt_total_threshold gauge
+smartmon_program_fail_cnt_total_threshold{disk="/dev/sda",type="sat",smart_id="181"} 50
+# HELP smartmon_program_fail_cnt_total_value SMART metric program_fail_cnt_total_value
+# TYPE smartmon_program_fail_cnt_total_value gauge
+smartmon_program_fail_cnt_total_value{disk="/dev/sda",type="sat",smart_id="181"} 100
+# HELP smartmon_program_fail_cnt_total_worst SMART metric program_fail_cnt_total_worst
+# TYPE smartmon_program_fail_cnt_total_worst gauge
+smartmon_program_fail_cnt_total_worst{disk="/dev/sda",type="sat",smart_id="181"} 100
+# HELP smartmon_program_fail_count_chip_raw_value SMART metric program_fail_count_chip_raw_value
+# TYPE smartmon_program_fail_count_chip_raw_value gauge
+smartmon_program_fail_count_chip_raw_value{disk="/dev/sda",type="sat",smart_id="175"} 0.000000e+00
+# HELP smartmon_program_fail_count_chip_threshold SMART metric program_fail_count_chip_threshold
+# TYPE smartmon_program_fail_count_chip_threshold gauge
+smartmon_program_fail_count_chip_threshold{disk="/dev/sda",type="sat",smart_id="175"} 50
+# HELP smartmon_program_fail_count_chip_value SMART metric program_fail_count_chip_value
+# TYPE smartmon_program_fail_count_chip_value gauge
+smartmon_program_fail_count_chip_value{disk="/dev/sda",type="sat",smart_id="175"} 100
+# HELP smartmon_program_fail_count_chip_worst SMART metric program_fail_count_chip_worst
+# TYPE smartmon_program_fail_count_chip_worst gauge
+smartmon_program_fail_count_chip_worst{disk="/dev/sda",type="sat",smart_id="175"} 100
+# HELP smartmon_raw_read_error_rate_raw_value SMART metric raw_read_error_rate_raw_value
+# TYPE smartmon_raw_read_error_rate_raw_value gauge
+smartmon_raw_read_error_rate_raw_value{disk="/dev/sda",type="sat",smart_id="1"} 0.000000e+00
+smartmon_raw_read_error_rate_raw_value{disk="/dev/sdb",type="sat",smart_id="1"} 0.000000e+00
+smartmon_raw_read_error_rate_raw_value{disk="/dev/sdd",type="sat,12",smart_id="1"} 0.000000e+00
+# HELP smartmon_raw_read_error_rate_threshold SMART metric raw_read_error_rate_threshold
+# TYPE smartmon_raw_read_error_rate_threshold gauge
+smartmon_raw_read_error_rate_threshold{disk="/dev/sda",type="sat",smart_id="1"} 50
+smartmon_raw_read_error_rate_threshold{disk="/dev/sdb",type="sat",smart_id="1"} 51
+smartmon_raw_read_error_rate_threshold{disk="/dev/sdd",type="sat,12",smart_id="1"} 51
+# HELP smartmon_raw_read_error_rate_value SMART metric raw_read_error_rate_value
+# TYPE smartmon_raw_read_error_rate_value gauge
+smartmon_raw_read_error_rate_value{disk="/dev/sda",type="sat",smart_id="1"} 100
+smartmon_raw_read_error_rate_value{disk="/dev/sdb",type="sat",smart_id="1"} 200
+smartmon_raw_read_error_rate_value{disk="/dev/sdd",type="sat,12",smart_id="1"} 200
+# HELP smartmon_raw_read_error_rate_worst SMART metric raw_read_error_rate_worst
+# TYPE smartmon_raw_read_error_rate_worst gauge
+smartmon_raw_read_error_rate_worst{disk="/dev/sda",type="sat",smart_id="1"} 100
+smartmon_raw_read_error_rate_worst{disk="/dev/sdb",type="sat",smart_id="1"} 200
+smartmon_raw_read_error_rate_worst{disk="/dev/sdd",type="sat,12",smart_id="1"} 200
+# HELP smartmon_reallocated_event_count_raw_value SMART metric reallocated_event_count_raw_value
+# TYPE smartmon_reallocated_event_count_raw_value gauge
+smartmon_reallocated_event_count_raw_value{disk="/dev/sda",type="sat",smart_id="196"} 0.000000e+00
+smartmon_reallocated_event_count_raw_value{disk="/dev/sdb",type="sat",smart_id="196"} 0.000000e+00
+smartmon_reallocated_event_count_raw_value{disk="/dev/sdd",type="sat,12",smart_id="196"} 0.000000e+00
+# HELP smartmon_reallocated_event_count_threshold SMART metric reallocated_event_count_threshold
+# TYPE smartmon_reallocated_event_count_threshold gauge
+smartmon_reallocated_event_count_threshold{disk="/dev/sda",type="sat",smart_id="196"} 50
+smartmon_reallocated_event_count_threshold{disk="/dev/sdb",type="sat",smart_id="196"} 0
+smartmon_reallocated_event_count_threshold{disk="/dev/sdd",type="sat,12",smart_id="196"} 0
+# HELP smartmon_reallocated_event_count_value SMART metric reallocated_event_count_value
+# TYPE smartmon_reallocated_event_count_value gauge
+smartmon_reallocated_event_count_value{disk="/dev/sda",type="sat",smart_id="196"} 100
+smartmon_reallocated_event_count_value{disk="/dev/sdb",type="sat",smart_id="196"} 200
+smartmon_reallocated_event_count_value{disk="/dev/sdd",type="sat,12",smart_id="196"} 200
+# HELP smartmon_reallocated_event_count_worst SMART metric reallocated_event_count_worst
+# TYPE smartmon_reallocated_event_count_worst gauge
+smartmon_reallocated_event_count_worst{disk="/dev/sda",type="sat",smart_id="196"} 100
+smartmon_reallocated_event_count_worst{disk="/dev/sdb",type="sat",smart_id="196"} 200
+smartmon_reallocated_event_count_worst{disk="/dev/sdd",type="sat,12",smart_id="196"} 200
+# HELP smartmon_reallocated_sector_ct_raw_value SMART metric reallocated_sector_ct_raw_value
+# TYPE smartmon_reallocated_sector_ct_raw_value gauge
+smartmon_reallocated_sector_ct_raw_value{disk="/dev/sda",type="sat",smart_id="5"} 0.000000e+00
+smartmon_reallocated_sector_ct_raw_value{disk="/dev/sdb",type="sat",smart_id="5"} 0.000000e+00
+smartmon_reallocated_sector_ct_raw_value{disk="/dev/sdd",type="sat,12",smart_id="5"} 0.000000e+00
+# HELP smartmon_reallocated_sector_ct_threshold SMART metric reallocated_sector_ct_threshold
+# TYPE smartmon_reallocated_sector_ct_threshold gauge
+smartmon_reallocated_sector_ct_threshold{disk="/dev/sda",type="sat",smart_id="5"} 50
+smartmon_reallocated_sector_ct_threshold{disk="/dev/sdb",type="sat",smart_id="5"} 140
+smartmon_reallocated_sector_ct_threshold{disk="/dev/sdd",type="sat,12",smart_id="5"} 140
+# HELP smartmon_reallocated_sector_ct_value SMART metric reallocated_sector_ct_value
+# TYPE smartmon_reallocated_sector_ct_value gauge
+smartmon_reallocated_sector_ct_value{disk="/dev/sda",type="sat",smart_id="5"} 100
+smartmon_reallocated_sector_ct_value{disk="/dev/sdb",type="sat",smart_id="5"} 200
+smartmon_reallocated_sector_ct_value{disk="/dev/sdd",type="sat,12",smart_id="5"} 200
+# HELP smartmon_reallocated_sector_ct_worst SMART metric reallocated_sector_ct_worst
+# TYPE smartmon_reallocated_sector_ct_worst gauge
+smartmon_reallocated_sector_ct_worst{disk="/dev/sda",type="sat",smart_id="5"} 100
+smartmon_reallocated_sector_ct_worst{disk="/dev/sdb",type="sat",smart_id="5"} 200
+smartmon_reallocated_sector_ct_worst{disk="/dev/sdd",type="sat,12",smart_id="5"} 200
+# HELP smartmon_seek_error_rate_raw_value SMART metric seek_error_rate_raw_value
+# TYPE smartmon_seek_error_rate_raw_value gauge
+smartmon_seek_error_rate_raw_value{disk="/dev/sdb",type="sat",smart_id="7"} 0.000000e+00
+smartmon_seek_error_rate_raw_value{disk="/dev/sdd",type="sat,12",smart_id="7"} 0.000000e+00
+# HELP smartmon_seek_error_rate_threshold SMART metric seek_error_rate_threshold
+# TYPE smartmon_seek_error_rate_threshold gauge
+smartmon_seek_error_rate_threshold{disk="/dev/sdb",type="sat",smart_id="7"} 0
+smartmon_seek_error_rate_threshold{disk="/dev/sdd",type="sat,12",smart_id="7"} 0
+# HELP smartmon_seek_error_rate_value SMART metric seek_error_rate_value
+# TYPE smartmon_seek_error_rate_value gauge
+smartmon_seek_error_rate_value{disk="/dev/sdb",type="sat",smart_id="7"} 200
+smartmon_seek_error_rate_value{disk="/dev/sdd",type="sat,12",smart_id="7"} 200
+# HELP smartmon_seek_error_rate_worst SMART metric seek_error_rate_worst
+# TYPE smartmon_seek_error_rate_worst gauge
+smartmon_seek_error_rate_worst{disk="/dev/sdb",type="sat",smart_id="7"} 200
+smartmon_seek_error_rate_worst{disk="/dev/sdd",type="sat,12",smart_id="7"} 200
+# HELP smartmon_smartctl_run SMART metric smartctl_run
+# TYPE smartmon_smartctl_run gauge
+smartmon_smartctl_run{disk="/dev/sda",type="sat"} NOW
+smartmon_smartctl_run{disk="/dev/sdb",type="sat"} NOW
+smartmon_smartctl_run{disk="/dev/sdc",type="sat"} NOW
+smartmon_smartctl_run{disk="/dev/sdd",type="sat,12"} NOW
+# HELP smartmon_spin_retry_count_raw_value SMART metric spin_retry_count_raw_value
+# TYPE smartmon_spin_retry_count_raw_value gauge
+smartmon_spin_retry_count_raw_value{disk="/dev/sdb",type="sat",smart_id="10"} 0.000000e+00
+smartmon_spin_retry_count_raw_value{disk="/dev/sdd",type="sat,12",smart_id="10"} 0.000000e+00
+# HELP smartmon_spin_retry_count_threshold SMART metric spin_retry_count_threshold
+# TYPE smartmon_spin_retry_count_threshold gauge
+smartmon_spin_retry_count_threshold{disk="/dev/sdb",type="sat",smart_id="10"} 0
+smartmon_spin_retry_count_threshold{disk="/dev/sdd",type="sat,12",smart_id="10"} 0
+# HELP smartmon_spin_retry_count_value SMART metric spin_retry_count_value
+# TYPE smartmon_spin_retry_count_value gauge
+smartmon_spin_retry_count_value{disk="/dev/sdb",type="sat",smart_id="10"} 100
+smartmon_spin_retry_count_value{disk="/dev/sdd",type="sat,12",smart_id="10"} 100
+# HELP smartmon_spin_retry_count_worst SMART metric spin_retry_count_worst
+# TYPE smartmon_spin_retry_count_worst gauge
+smartmon_spin_retry_count_worst{disk="/dev/sdb",type="sat",smart_id="10"} 253
+smartmon_spin_retry_count_worst{disk="/dev/sdd",type="sat,12",smart_id="10"} 253
+# HELP smartmon_spin_up_time_raw_value SMART metric spin_up_time_raw_value
+# TYPE smartmon_spin_up_time_raw_value gauge
+smartmon_spin_up_time_raw_value{disk="/dev/sdb",type="sat",smart_id="3"} 8.816000e+03
+smartmon_spin_up_time_raw_value{disk="/dev/sdd",type="sat,12",smart_id="3"} 8.475000e+03
+# HELP smartmon_spin_up_time_threshold SMART metric spin_up_time_threshold
+# TYPE smartmon_spin_up_time_threshold gauge
+smartmon_spin_up_time_threshold{disk="/dev/sdb",type="sat",smart_id="3"} 21
+smartmon_spin_up_time_threshold{disk="/dev/sdd",type="sat,12",smart_id="3"} 21
+# HELP smartmon_spin_up_time_value SMART metric spin_up_time_value
+# TYPE smartmon_spin_up_time_value gauge
+smartmon_spin_up_time_value{disk="/dev/sdb",type="sat",smart_id="3"} 203
+smartmon_spin_up_time_value{disk="/dev/sdd",type="sat,12",smart_id="3"} 210
+# HELP smartmon_spin_up_time_worst SMART metric spin_up_time_worst
+# TYPE smartmon_spin_up_time_worst gauge
+smartmon_spin_up_time_worst{disk="/dev/sdb",type="sat",smart_id="3"} 190
+smartmon_spin_up_time_worst{disk="/dev/sdd",type="sat,12",smart_id="3"} 192
+# HELP smartmon_start_stop_count_raw_value SMART metric start_stop_count_raw_value
+# TYPE smartmon_start_stop_count_raw_value gauge
+smartmon_start_stop_count_raw_value{disk="/dev/sdb",type="sat",smart_id="4"} 1.700000e+01
+smartmon_start_stop_count_raw_value{disk="/dev/sdd",type="sat,12",smart_id="4"} 1.600000e+01
+# HELP smartmon_start_stop_count_threshold SMART metric start_stop_count_threshold
+# TYPE smartmon_start_stop_count_threshold gauge
+smartmon_start_stop_count_threshold{disk="/dev/sdb",type="sat",smart_id="4"} 0
+smartmon_start_stop_count_threshold{disk="/dev/sdd",type="sat,12",smart_id="4"} 0
+# HELP smartmon_start_stop_count_value SMART metric start_stop_count_value
+# TYPE smartmon_start_stop_count_value gauge
+smartmon_start_stop_count_value{disk="/dev/sdb",type="sat",smart_id="4"} 100
+smartmon_start_stop_count_value{disk="/dev/sdd",type="sat,12",smart_id="4"} 100
+# HELP smartmon_start_stop_count_worst SMART metric start_stop_count_worst
+# TYPE smartmon_start_stop_count_worst gauge
+smartmon_start_stop_count_worst{disk="/dev/sdb",type="sat",smart_id="4"} 100
+smartmon_start_stop_count_worst{disk="/dev/sdd",type="sat,12",smart_id="4"} 100
+# HELP smartmon_temperature_celsius_raw_value SMART metric temperature_celsius_raw_value
+# TYPE smartmon_temperature_celsius_raw_value gauge
+smartmon_temperature_celsius_raw_value{disk="/dev/sda",type="sat",smart_id="194"} 4.000000e+01
+smartmon_temperature_celsius_raw_value{disk="/dev/sdb",type="sat",smart_id="194"} 3.900000e+01
+smartmon_temperature_celsius_raw_value{disk="/dev/sdd",type="sat,12",smart_id="194"} 4.400000e+01
+# HELP smartmon_temperature_celsius_threshold SMART metric temperature_celsius_threshold
+# TYPE smartmon_temperature_celsius_threshold gauge
+smartmon_temperature_celsius_threshold{disk="/dev/sda",type="sat",smart_id="194"} 50
+smartmon_temperature_celsius_threshold{disk="/dev/sdb",type="sat",smart_id="194"} 0
+smartmon_temperature_celsius_threshold{disk="/dev/sdd",type="sat,12",smart_id="194"} 0
+# HELP smartmon_temperature_celsius_value SMART metric temperature_celsius_value
+# TYPE smartmon_temperature_celsius_value gauge
+smartmon_temperature_celsius_value{disk="/dev/sda",type="sat",smart_id="194"} 100
+smartmon_temperature_celsius_value{disk="/dev/sdb",type="sat",smart_id="194"} 113
+smartmon_temperature_celsius_value{disk="/dev/sdd",type="sat,12",smart_id="194"} 108
+# HELP smartmon_temperature_celsius_worst SMART metric temperature_celsius_worst
+# TYPE smartmon_temperature_celsius_worst gauge
+smartmon_temperature_celsius_worst{disk="/dev/sda",type="sat",smart_id="194"} 100
+smartmon_temperature_celsius_worst{disk="/dev/sdb",type="sat",smart_id="194"} 98
+smartmon_temperature_celsius_worst{disk="/dev/sdd",type="sat,12",smart_id="194"} 90
+# HELP smartmon_total_lbas_read_raw_value SMART metric total_lbas_read_raw_value
+# TYPE smartmon_total_lbas_read_raw_value gauge
+smartmon_total_lbas_read_raw_value{disk="/dev/sda",type="sat",smart_id="242"} 1.481300e+04
+# HELP smartmon_total_lbas_read_threshold SMART metric total_lbas_read_threshold
+# TYPE smartmon_total_lbas_read_threshold gauge
+smartmon_total_lbas_read_threshold{disk="/dev/sda",type="sat",smart_id="242"} 50
+# HELP smartmon_total_lbas_read_value SMART metric total_lbas_read_value
+# TYPE smartmon_total_lbas_read_value gauge
+smartmon_total_lbas_read_value{disk="/dev/sda",type="sat",smart_id="242"} 100
+# HELP smartmon_total_lbas_read_worst SMART metric total_lbas_read_worst
+# TYPE smartmon_total_lbas_read_worst gauge
+smartmon_total_lbas_read_worst{disk="/dev/sda",type="sat",smart_id="242"} 100
+# HELP smartmon_total_lbas_written_raw_value SMART metric total_lbas_written_raw_value
+# TYPE smartmon_total_lbas_written_raw_value gauge
+smartmon_total_lbas_written_raw_value{disk="/dev/sda",type="sat",smart_id="241"} 1.425110e+05
+# HELP smartmon_total_lbas_written_threshold SMART metric total_lbas_written_threshold
+# TYPE smartmon_total_lbas_written_threshold gauge
+smartmon_total_lbas_written_threshold{disk="/dev/sda",type="sat",smart_id="241"} 50
+# HELP smartmon_total_lbas_written_value SMART metric total_lbas_written_value
+# TYPE smartmon_total_lbas_written_value gauge
+smartmon_total_lbas_written_value{disk="/dev/sda",type="sat",smart_id="241"} 100
+# HELP smartmon_total_lbas_written_worst SMART metric total_lbas_written_worst
+# TYPE smartmon_total_lbas_written_worst gauge
+smartmon_total_lbas_written_worst{disk="/dev/sda",type="sat",smart_id="241"} 100
+# HELP smartmon_udma_crc_error_count_raw_value SMART metric udma_crc_error_count_raw_value
+# TYPE smartmon_udma_crc_error_count_raw_value gauge
+smartmon_udma_crc_error_count_raw_value{disk="/dev/sda",type="sat",smart_id="199"} 0.000000e+00
+smartmon_udma_crc_error_count_raw_value{disk="/dev/sdb",type="sat",smart_id="199"} 4.300000e+01
+smartmon_udma_crc_error_count_raw_value{disk="/dev/sdd",type="sat,12",smart_id="199"} 5.300000e+01
+# HELP smartmon_udma_crc_error_count_threshold SMART metric udma_crc_error_count_threshold
+# TYPE smartmon_udma_crc_error_count_threshold gauge
+smartmon_udma_crc_error_count_threshold{disk="/dev/sda",type="sat",smart_id="199"} 50
+smartmon_udma_crc_error_count_threshold{disk="/dev/sdb",type="sat",smart_id="199"} 0
+smartmon_udma_crc_error_count_threshold{disk="/dev/sdd",type="sat,12",smart_id="199"} 0
+# HELP smartmon_udma_crc_error_count_value SMART metric udma_crc_error_count_value
+# TYPE smartmon_udma_crc_error_count_value gauge
+smartmon_udma_crc_error_count_value{disk="/dev/sda",type="sat",smart_id="199"} 100
+smartmon_udma_crc_error_count_value{disk="/dev/sdb",type="sat",smart_id="199"} 200
+smartmon_udma_crc_error_count_value{disk="/dev/sdd",type="sat,12",smart_id="199"} 200
+# HELP smartmon_udma_crc_error_count_worst SMART metric udma_crc_error_count_worst
+# TYPE smartmon_udma_crc_error_count_worst gauge
+smartmon_udma_crc_error_count_worst{disk="/dev/sda",type="sat",smart_id="199"} 100
+smartmon_udma_crc_error_count_worst{disk="/dev/sdb",type="sat",smart_id="199"} 200
+smartmon_udma_crc_error_count_worst{disk="/dev/sdd",type="sat,12",smart_id="199"} 200
+# HELP smartmon_wear_leveling_count_raw_value SMART metric wear_leveling_count_raw_value
+# TYPE smartmon_wear_leveling_count_raw_value gauge
+smartmon_wear_leveling_count_raw_value{disk="/dev/sda",type="sat",smart_id="177"} 0.000000e+00
+# HELP smartmon_wear_leveling_count_threshold SMART metric wear_leveling_count_threshold
+# TYPE smartmon_wear_leveling_count_threshold gauge
+smartmon_wear_leveling_count_threshold{disk="/dev/sda",type="sat",smart_id="177"} 50
+# HELP smartmon_wear_leveling_count_value SMART metric wear_leveling_count_value
+# TYPE smartmon_wear_leveling_count_value gauge
+smartmon_wear_leveling_count_value{disk="/dev/sda",type="sat",smart_id="177"} 100
+# HELP smartmon_wear_leveling_count_worst SMART metric wear_leveling_count_worst
+# TYPE smartmon_wear_leveling_count_worst gauge
+smartmon_wear_leveling_count_worst{disk="/dev/sda",type="sat",smart_id="177"} 100
