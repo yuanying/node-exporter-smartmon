@@ -33,7 +33,7 @@ expect() {
 
 # braque: the SATA SSD in --scan-open, and four USB bays behind a bridge
 # smartctl does not know: sdb active, sdc spun down, sdd answering only
-# as sat,12, sde empty. sdf is an iSCSI disk.
+# as sat,12, sde empty. sdf is a disk not on USB.
 expect usb usb SMARTMON_USB_TYPES='sat sat,12'
 expect usb-default-types usb
 expect usb-off usb SMARTMON_USB_TYPES=
