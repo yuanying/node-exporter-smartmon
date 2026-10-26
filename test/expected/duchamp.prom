@@ -16,28 +16,18 @@ smartmon_command_timeout_worst{disk="/dev/sdb",type="sat",smart_id="188"} 100
 # HELP smartmon_device_active SMART metric device_active
 # TYPE smartmon_device_active gauge
 smartmon_device_active{disk="/dev/sdb",type="sat"} 1
-smartmon_device_active{disk="/dev/sdd",type="scsi"} 1
-smartmon_device_active{disk="/dev/sdf",type="scsi"} 1
 # HELP smartmon_device_info SMART metric device_info
 # TYPE smartmon_device_info gauge
 smartmon_device_info{disk="/dev/sdb",type="sat",vendor="",product="",revision="",lun_id="",model_family="Marvell based SanDisk SSDs",device_model="SanDisk SSD PLUS 2000GB",serial_number="000000000001",firmware_version="UP4504RL"} 1
-smartmon_device_info{disk="/dev/sdd",type="scsi",vendor="IET",product="VIRTUAL-DISK",revision="0001",lun_id="0x3000000200000001error: Duplicate NAA designator",model_family="",device_model="",serial_number="",firmware_version=""} 1
-smartmon_device_info{disk="/dev/sdf",type="scsi",vendor="IET",product="VIRTUAL-DISK",revision="0001",lun_id="0x3000000400000001error: Duplicate NAA designator",model_family="",device_model="",serial_number="",firmware_version=""} 1
 # HELP smartmon_device_smart_available SMART metric device_smart_available
 # TYPE smartmon_device_smart_available gauge
 smartmon_device_smart_available{disk="/dev/sdb",type="sat"} 1
-smartmon_device_smart_available{disk="/dev/sdd",type="scsi"} 1
-smartmon_device_smart_available{disk="/dev/sdf",type="scsi"} 1
 # HELP smartmon_device_smart_enabled SMART metric device_smart_enabled
 # TYPE smartmon_device_smart_enabled gauge
 smartmon_device_smart_enabled{disk="/dev/sdb",type="sat"} 1
-smartmon_device_smart_enabled{disk="/dev/sdd",type="scsi"} 0
-smartmon_device_smart_enabled{disk="/dev/sdf",type="scsi"} 0
 # HELP smartmon_device_smart_healthy SMART metric device_smart_healthy
 # TYPE smartmon_device_smart_healthy gauge
 smartmon_device_smart_healthy{disk="/dev/sdb",type="sat"} 1
-smartmon_device_smart_healthy{disk="/dev/sdd",type="scsi"} 1
-smartmon_device_smart_healthy{disk="/dev/sdf",type="scsi"} 1
 # HELP smartmon_end_to_end_error_raw_value SMART metric end_to_end_error_raw_value
 # TYPE smartmon_end_to_end_error_raw_value gauge
 smartmon_end_to_end_error_raw_value{disk="/dev/sdb",type="sat",smart_id="184"} 0.000000e+00
@@ -137,8 +127,6 @@ smartmon_reported_uncorrect_worst{disk="/dev/sdb",type="sat",smart_id="187"} 100
 # HELP smartmon_smartctl_run SMART metric smartctl_run
 # TYPE smartmon_smartctl_run gauge
 smartmon_smartctl_run{disk="/dev/sdb",type="sat"} NOW
-smartmon_smartctl_run{disk="/dev/sdd",type="scsi"} NOW
-smartmon_smartctl_run{disk="/dev/sdf",type="scsi"} NOW
 # HELP smartmon_temperature_celsius_raw_value SMART metric temperature_celsius_raw_value
 # TYPE smartmon_temperature_celsius_raw_value gauge
 smartmon_temperature_celsius_raw_value{disk="/dev/sdb",type="sat",smart_id="194"} 3.400000e+01

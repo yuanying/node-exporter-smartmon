@@ -229,6 +229,19 @@ list_usb_devices() {
   done
 }
 
+# Leaves out of the "<device>|<type>" lines the disks attached over
+# iSCSI (their sysfs path goes through an iSCSI session), such as the
+# Longhorn volumes (IET VIRTUAL-DISK): another host's storage, with no
+# SMART data of their own.
+drop_iscsi_devices() {
+  local device
+  while read -r device; do
+    [[ "$(readlink "${SMARTMON_SYSFS}/block/$(basename "${device%%|*}")")" == */session[0-9]*/* ]] &&
+      continue
+    echo "${device}"
+  done
+}
+
 SMARTCTL="${SMARTCTL:-/usr/sbin/smartctl}"
 SMARTMON_SYSFS="${SMARTMON_SYSFS:-/sys}"
 # Set it empty to read no disk --scan-open does not list
@@ -242,7 +255,7 @@ if [[ "$(expr "${smartctl_version}" : '\([0-9]*\)\..*')" -lt 6 ]]; then
   exit
 fi
 
-device_list="$("${SMARTCTL}" --scan-open | awk '/^\/dev/{print $1 "|" $3}')"
+device_list="$("${SMARTCTL}" --scan-open | awk '/^\/dev/{print $1 "|" $3}' | drop_iscsi_devices)"
 device_list="${device_list}
 $(list_usb_devices "${device_list}")"
 

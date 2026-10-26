@@ -23,6 +23,14 @@ the first type in `SMARTMON_USB_TYPES` the disk answers to
 |---|---|---|
 | `SMARTMON_USB_TYPES` | `sat` | Types to try, separated by spaces, e.g. `sat sat,12`. `sat`, `sat,*` and `usb*` are read as ATA. Set it empty to read no disk `--scan-open` does not list |
 
+## Disks attached over iSCSI
+
+The script leaves out the disks `--scan-open` lists whose sysfs path
+(`/sys/block/<disk>`) goes through an iSCSI session (`.../session<N>/...`).
+They are another host's storage with no SMART data of their own, and
+they come and go with what is attached: since smartctl 7.5, every
+Longhorn volume attached to the node (`IET VIRTUAL-DISK`) is listed.
+
 ## Attribute names
 
 The metrics of the ATA attributes are named after the attribute names
