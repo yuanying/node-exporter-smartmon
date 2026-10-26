@@ -37,6 +37,7 @@ expect() {
 expect usb usb SMARTMON_USB_TYPES='sat sat,12'
 expect usb-default-types usb
 expect usb-off usb SMARTMON_USB_TYPES=
+expect nvme nvme
 
 echo "${failures} failure(s)"
 exit $((failures > 0))

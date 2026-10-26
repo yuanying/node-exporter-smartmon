@@ -103,6 +103,37 @@ parse_smartctl_scsi_attributes() {
   [ -n "$grown_defects" ] && echo "grown_defects_count_raw_value{${labels},smart_id=\"12\"} ${grown_defects}"
 }
 
+parse_smartctl_nvme_attributes() {
+  local disk="$1"
+  local disk_type="$2"
+  local labels="disk=\"${disk}\",type=\"${disk_type}\""
+  local attr_type attr_value
+  while read -r line; do
+    attr_type="$(echo "${line}" | cut -f1 -d: | tr -s ' ' '_')"
+    # The number before any unit or [...]: "12,345 [6.32 TB]" -> 12345, "3%" -> 3
+    attr_value="$(echo "${line}" | cut -f2- -d: | sed 's/^ \+//g' | cut -f1 -d' ' | tr -d ',%')"
+    case "${attr_type}" in
+    Critical_Warning) echo "nvme_critical_warning{${labels}} $((attr_value))" ;;
+    Temperature) echo "temperature_celsius_raw_value{${labels},smart_id=\"194\"} ${attr_value}" ;;
+    Available_Spare) echo "nvme_available_spare{${labels}} ${attr_value}" ;;
+    Available_Spare_Threshold) echo "nvme_available_spare_threshold{${labels}} ${attr_value}" ;;
+    Percentage_Used) echo "nvme_percentage_used{${labels}} ${attr_value}" ;;
+    Data_Units_Read) echo "nvme_data_units_read{${labels}} ${attr_value}" ;;
+    Data_Units_Written) echo "nvme_data_units_written{${labels}} ${attr_value}" ;;
+    Host_Read_Commands) echo "nvme_host_read_commands{${labels}} ${attr_value}" ;;
+    Host_Write_Commands) echo "nvme_host_write_commands{${labels}} ${attr_value}" ;;
+    Controller_Busy_Time) echo "nvme_controller_busy_time{${labels}} ${attr_value}" ;;
+    Power_Cycles) echo "power_cycle_count_raw_value{${labels},smart_id=\"12\"} ${attr_value}" ;;
+    Power_On_Hours) echo "power_on_hours_raw_value{${labels},smart_id=\"9\"} ${attr_value}" ;;
+    Unsafe_Shutdowns) echo "nvme_unsafe_shutdowns{${labels}} ${attr_value}" ;;
+    Media_and_Data_Integrity_Errors) echo "nvme_media_errors{${labels}} ${attr_value}" ;;
+    Error_Information_Log_Entries) echo "nvme_error_log_entries{${labels}} ${attr_value}" ;;
+    Warning_Comp._Temperature_Time) echo "nvme_warning_temp_time{${labels}} ${attr_value}" ;;
+    Critical_Comp._Temperature_Time) echo "nvme_critical_temp_time{${labels}} ${attr_value}" ;;
+    esac
+  done
+}
+
 parse_smartctl_info() {
   local -i smart_available=0 smart_enabled=0 smart_healthy=
   local disk="$1" disk_type="$2"
@@ -112,7 +143,7 @@ parse_smartctl_info() {
     info_value="$(echo "${line}" | cut -f2- -d: | sed 's/^ \+//g' | sed 's/"/\\"/')"
     case "${info_type}" in
     Model_Family) model_family="${info_value}" ;;
-    Device_Model) device_model="${info_value}" ;;
+    Device_Model | Model_Number) device_model="${info_value}" ;;
     Serial_Number) serial_number="${info_value}" ;;
     Firmware_Version) fw_version="${info_value}" ;;
     Vendor) vendor="${info_value}" ;;
@@ -221,7 +252,7 @@ for device in ${device_list}; do
   sat+megaraid*) "${SMARTCTL}" -A -d "${type}" "${disk}" | parse_smartctl_attributes "${disk}" "${type}" ;;
   scsi) "${SMARTCTL}" -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
   megaraid*) "${SMARTCTL}" -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
-  nvme*) "${SMARTCTL}" -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
+  nvme*) "${SMARTCTL}" -A -d "${type}" "${disk}" | parse_smartctl_nvme_attributes "${disk}" "${type}" ;;
   *)
       (>&2 echo "disk type is not sat, scsi, nvme or megaraid but ${type}")
     exit

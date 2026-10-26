@@ -1,0 +1,95 @@
+# HELP smartmon_smartctl_version SMART metric smartctl_version
+# TYPE smartmon_smartctl_version gauge
+smartmon_smartctl_version{version="7.4"} 1
+# HELP smartmon_device_active SMART metric device_active
+# TYPE smartmon_device_active gauge
+smartmon_device_active{disk="/dev/nvme0",type="nvme"} 1
+smartmon_device_active{disk="/dev/nvme1",type="nvme"} 1
+# HELP smartmon_device_info SMART metric device_info
+# TYPE smartmon_device_info gauge
+smartmon_device_info{disk="/dev/nvme0",type="nvme",vendor="",product="",revision="",lun_id="",model_family="",device_model="SPCC M.2 PCIe SSD",serial_number="AA000000000000001234",firmware_version="V1.0"} 1
+smartmon_device_info{disk="/dev/nvme1",type="nvme",vendor="",product="",revision="",lun_id="",model_family="",device_model="CT500P2SSD8",serial_number="2040E0000001",firmware_version="P2CR012"} 1
+# HELP smartmon_device_smart_available SMART metric device_smart_available
+# TYPE smartmon_device_smart_available gauge
+smartmon_device_smart_available{disk="/dev/nvme0",type="nvme"} 0
+smartmon_device_smart_available{disk="/dev/nvme1",type="nvme"} 0
+# HELP smartmon_device_smart_enabled SMART metric device_smart_enabled
+# TYPE smartmon_device_smart_enabled gauge
+smartmon_device_smart_enabled{disk="/dev/nvme0",type="nvme"} 0
+smartmon_device_smart_enabled{disk="/dev/nvme1",type="nvme"} 0
+# HELP smartmon_device_smart_healthy SMART metric device_smart_healthy
+# TYPE smartmon_device_smart_healthy gauge
+smartmon_device_smart_healthy{disk="/dev/nvme0",type="nvme"} 1
+smartmon_device_smart_healthy{disk="/dev/nvme1",type="nvme"} 0
+# HELP smartmon_nvme_available_spare_threshold SMART metric nvme_available_spare_threshold
+# TYPE smartmon_nvme_available_spare_threshold gauge
+smartmon_nvme_available_spare_threshold{disk="/dev/nvme0",type="nvme"} 10
+smartmon_nvme_available_spare_threshold{disk="/dev/nvme1",type="nvme"} 5
+# HELP smartmon_nvme_available_spare SMART metric nvme_available_spare
+# TYPE smartmon_nvme_available_spare gauge
+smartmon_nvme_available_spare{disk="/dev/nvme0",type="nvme"} 100
+smartmon_nvme_available_spare{disk="/dev/nvme1",type="nvme"} 4
+# HELP smartmon_nvme_controller_busy_time SMART metric nvme_controller_busy_time
+# TYPE smartmon_nvme_controller_busy_time gauge
+smartmon_nvme_controller_busy_time{disk="/dev/nvme0",type="nvme"} 1234
+smartmon_nvme_controller_busy_time{disk="/dev/nvme1",type="nvme"} 98765
+# HELP smartmon_nvme_critical_temp_time SMART metric nvme_critical_temp_time
+# TYPE smartmon_nvme_critical_temp_time gauge
+smartmon_nvme_critical_temp_time{disk="/dev/nvme0",type="nvme"} 0
+smartmon_nvme_critical_temp_time{disk="/dev/nvme1",type="nvme"} 3
+# HELP smartmon_nvme_critical_warning SMART metric nvme_critical_warning
+# TYPE smartmon_nvme_critical_warning gauge
+smartmon_nvme_critical_warning{disk="/dev/nvme0",type="nvme"} 0
+smartmon_nvme_critical_warning{disk="/dev/nvme1",type="nvme"} 9
+# HELP smartmon_nvme_data_units_read SMART metric nvme_data_units_read
+# TYPE smartmon_nvme_data_units_read gauge
+smartmon_nvme_data_units_read{disk="/dev/nvme0",type="nvme"} 12345678
+smartmon_nvme_data_units_read{disk="/dev/nvme1",type="nvme"} 987654321
+# HELP smartmon_nvme_data_units_written SMART metric nvme_data_units_written
+# TYPE smartmon_nvme_data_units_written gauge
+smartmon_nvme_data_units_written{disk="/dev/nvme0",type="nvme"} 23456789
+smartmon_nvme_data_units_written{disk="/dev/nvme1",type="nvme"} 1234567890
+# HELP smartmon_nvme_error_log_entries SMART metric nvme_error_log_entries
+# TYPE smartmon_nvme_error_log_entries gauge
+smartmon_nvme_error_log_entries{disk="/dev/nvme0",type="nvme"} 7
+smartmon_nvme_error_log_entries{disk="/dev/nvme1",type="nvme"} 2048
+# HELP smartmon_nvme_host_read_commands SMART metric nvme_host_read_commands
+# TYPE smartmon_nvme_host_read_commands gauge
+smartmon_nvme_host_read_commands{disk="/dev/nvme0",type="nvme"} 123456789
+smartmon_nvme_host_read_commands{disk="/dev/nvme1",type="nvme"} 9876543210
+# HELP smartmon_nvme_host_write_commands SMART metric nvme_host_write_commands
+# TYPE smartmon_nvme_host_write_commands gauge
+smartmon_nvme_host_write_commands{disk="/dev/nvme0",type="nvme"} 234567890
+smartmon_nvme_host_write_commands{disk="/dev/nvme1",type="nvme"} 12345678901
+# HELP smartmon_nvme_media_errors SMART metric nvme_media_errors
+# TYPE smartmon_nvme_media_errors gauge
+smartmon_nvme_media_errors{disk="/dev/nvme0",type="nvme"} 0
+smartmon_nvme_media_errors{disk="/dev/nvme1",type="nvme"} 17
+# HELP smartmon_nvme_percentage_used SMART metric nvme_percentage_used
+# TYPE smartmon_nvme_percentage_used gauge
+smartmon_nvme_percentage_used{disk="/dev/nvme0",type="nvme"} 3
+smartmon_nvme_percentage_used{disk="/dev/nvme1",type="nvme"} 112
+# HELP smartmon_nvme_unsafe_shutdowns SMART metric nvme_unsafe_shutdowns
+# TYPE smartmon_nvme_unsafe_shutdowns gauge
+smartmon_nvme_unsafe_shutdowns{disk="/dev/nvme0",type="nvme"} 21
+smartmon_nvme_unsafe_shutdowns{disk="/dev/nvme1",type="nvme"} 305
+# HELP smartmon_nvme_warning_temp_time SMART metric nvme_warning_temp_time
+# TYPE smartmon_nvme_warning_temp_time gauge
+smartmon_nvme_warning_temp_time{disk="/dev/nvme0",type="nvme"} 0
+smartmon_nvme_warning_temp_time{disk="/dev/nvme1",type="nvme"} 12
+# HELP smartmon_power_cycle_count_raw_value SMART metric power_cycle_count_raw_value
+# TYPE smartmon_power_cycle_count_raw_value gauge
+smartmon_power_cycle_count_raw_value{disk="/dev/nvme0",type="nvme",smart_id="12"} 56
+smartmon_power_cycle_count_raw_value{disk="/dev/nvme1",type="nvme",smart_id="12"} 1024
+# HELP smartmon_power_on_hours_raw_value SMART metric power_on_hours_raw_value
+# TYPE smartmon_power_on_hours_raw_value gauge
+smartmon_power_on_hours_raw_value{disk="/dev/nvme0",type="nvme",smart_id="9"} 12345
+smartmon_power_on_hours_raw_value{disk="/dev/nvme1",type="nvme",smart_id="9"} 43210
+# HELP smartmon_smartctl_run SMART metric smartctl_run
+# TYPE smartmon_smartctl_run gauge
+smartmon_smartctl_run{disk="/dev/nvme0",type="nvme"} NOW
+smartmon_smartctl_run{disk="/dev/nvme1",type="nvme"} NOW
+# HELP smartmon_temperature_celsius_raw_value SMART metric temperature_celsius_raw_value
+# TYPE smartmon_temperature_celsius_raw_value gauge
+smartmon_temperature_celsius_raw_value{disk="/dev/nvme0",type="nvme",smart_id="194"} 38
+smartmon_temperature_celsius_raw_value{disk="/dev/nvme1",type="nvme",smart_id="194"} 51
