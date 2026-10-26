@@ -1,0 +1,14 @@
+smartctl 7.2 2020-12-30 r5155 [x86_64-linux-6.8.0-147-generic] (local build)
+Copyright (C) 2002-20, Bruce Allen, Christian Franke, www.smartmontools.org
+
+smartctl comes with ABSOLUTELY NO WARRANTY. This is free
+software, and you are welcome to redistribute it under
+the terms of the GNU General Public License; either
+version 2, or (at your option) any later version.
+See http://www.gnu.org for further details.
+
+smartmontools release 7.2 dated 2020-12-30 at 16:48:30 UTC
+smartmontools SVN rev 5155 dated 2020-12-30 at 16:49:18
+smartmontools build host: x86_64-alpine-linux-musl
+smartmontools build with: C++14, GCC 10.3.1 20210424
+smartmontools configure arguments: '--build=x86_64-alpine-linux-musl' '--host=x86_64-alpine-linux-musl' '--prefix=/usr' '--sysconfdir=/etc' 'build_alias=x86_64-alpine-linux-musl' 'host_alias=x86_64-alpine-linux-musl' 'CXX=g++' 'CXXFLAGS=-Os -fomit-frame-pointer' 'CPPFLAGS=-Os -fomit-frame-pointer' 'CC=gcc' 'CFLAGS=-Os -fomit-frame-pointer'

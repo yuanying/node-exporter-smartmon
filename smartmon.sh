@@ -162,7 +162,36 @@ format_output() {
     awk -F'{' "${output_format_awk}"
 }
 
-smartctl_version="$(/usr/sbin/smartctl -V | head -n1 | awk '$1 == "smartctl" {print $2}')"
+# Prints "<device>|<type>" for each disk on USB that --scan-open left out
+# (smartctl does not know every USB bridge) and that answers to one of
+# the types in SMARTMON_USB_TYPES, tried in order.
+list_usb_devices() {
+  local scanned="$1" link name type out
+  for link in "${SMARTMON_SYSFS}"/block/sd*; do
+    [[ -L "${link}" ]] || continue
+    [[ "$(readlink "${link}")" == */usb* ]] || continue
+    name="$(basename "${link}")"
+    # An empty bay of the enclosure has no medium
+    [[ "$(cat "${link}/size" 2>/dev/null)" -gt 0 ]] || continue
+    grep -qx "/dev/${name}|.*" <<<"${scanned}" && continue
+    for type in ${SMARTMON_USB_TYPES}; do
+      # -n standby: a spun down disk is not woken up, and its type still
+      # counts as found when it answers to the power mode check
+      if out="$("${SMARTCTL}" -n standby -i -d "${type}" "/dev/${name}")" ||
+        grep -qE '^Device is in (STANDBY|SLEEP)' <<<"${out}"; then
+        echo "/dev/${name}|${type}"
+        break
+      fi
+    done
+  done
+}
+
+SMARTCTL="${SMARTCTL:-/usr/sbin/smartctl}"
+SMARTMON_SYSFS="${SMARTMON_SYSFS:-/sys}"
+# Set it empty to read no disk --scan-open does not list
+SMARTMON_USB_TYPES="${SMARTMON_USB_TYPES-sat}"
+
+smartctl_version="$("${SMARTCTL}" -V | head -n1 | awk '$1 == "smartctl" {print $2}')"
 
 echo "smartctl_version{version=\"${smartctl_version}\"} 1" | format_output
 
@@ -170,7 +199,9 @@ if [[ "$(expr "${smartctl_version}" : '\([0-9]*\)\..*')" -lt 6 ]]; then
   exit
 fi
 
-device_list="$(/usr/sbin/smartctl --scan-open | awk '/^\/dev/{print $1 "|" $3}')"
+device_list="$("${SMARTCTL}" --scan-open | awk '/^\/dev/{print $1 "|" $3}')"
+device_list="${device_list}
+$(list_usb_devices "${device_list}")"
 
 for device in ${device_list}; do
   disk="$(echo "${device}" | cut -f1 -d'|')"
@@ -178,19 +209,19 @@ for device in ${device_list}; do
   active=1
   echo "smartctl_run{disk=\"${disk}\",type=\"${type}\"}" "$(TZ=UTC date '+%s')"
   # Check if the device is in a low-power mode
-  /usr/sbin/smartctl -n standby -d "${type}" "${disk}" > /dev/null || active=0
+  "${SMARTCTL}" -n standby -d "${type}" "${disk}" > /dev/null || active=0
   echo "device_active{disk=\"${disk}\",type=\"${type}\"}" "${active}"
   # Skip further metrics to prevent the disk from spinning up
   test ${active} -eq 0 && continue
   # Get the SMART information and health
-  /usr/sbin/smartctl -i -H -d "${type}" "${disk}" | parse_smartctl_info "${disk}" "${type}"
+  "${SMARTCTL}" -i -H -d "${type}" "${disk}" | parse_smartctl_info "${disk}" "${type}"
   # Get the SMART attributes
   case ${type} in
-  sat) /usr/sbin/smartctl -A -d "${type}" "${disk}" | parse_smartctl_attributes "${disk}" "${type}" ;;
-  sat+megaraid*) /usr/sbin/smartctl -A -d "${type}" "${disk}" | parse_smartctl_attributes "${disk}" "${type}" ;;
-  scsi) /usr/sbin/smartctl -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
-  megaraid*) /usr/sbin/smartctl -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
-  nvme*) /usr/sbin/smartctl -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
+  sat | sat,* | usb*) "${SMARTCTL}" -A -d "${type}" "${disk}" | parse_smartctl_attributes "${disk}" "${type}" ;;
+  sat+megaraid*) "${SMARTCTL}" -A -d "${type}" "${disk}" | parse_smartctl_attributes "${disk}" "${type}" ;;
+  scsi) "${SMARTCTL}" -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
+  megaraid*) "${SMARTCTL}" -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
+  nvme*) "${SMARTCTL}" -A -d "${type}" "${disk}" | parse_smartctl_scsi_attributes "${disk}" "${type}" ;;
   *)
       (>&2 echo "disk type is not sat, scsi, nvme or megaraid but ${type}")
     exit
