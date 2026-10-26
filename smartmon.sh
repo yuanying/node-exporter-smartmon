@@ -12,12 +12,24 @@
 
 parse_smartctl_attributes_awk="$(
   cat <<'SMARTCTLAWK'
+BEGIN {
+  # Names a newer drivedb gives to attributes that smartctl 7.2 printed
+  # with the default names, "<ID> <new name>" -> default name. The
+  # metrics keep the default names, so they do not change with smartctl.
+  # smartctl 7.5: SanDisk SSD PLUS 2000GB (Marvell based SanDisk SSDs)
+  legacy["199 sata_crc_error"] = "udma_crc_error_count"
+  legacy["233 total_nand_writes_gib"] = "media_wearout_indicator"
+  legacy["241 total_writes_gib"] = "total_lbas_written"
+  legacy["242 total_reads_gib"] = "total_lbas_read"
+}
 $1 ~ /^ *[0-9]+$/ && $2 ~ /^[a-zA-Z0-9_-]+$/ {
   gsub(/-/, "_");
-  printf "%s_value{%s,smart_id=\"%s\"} %d\n", $2, labels, $1, $4
-  printf "%s_worst{%s,smart_id=\"%s\"} %d\n", $2, labels, $1, $5
-  printf "%s_threshold{%s,smart_id=\"%s\"} %d\n", $2, labels, $1, $6
-  printf "%s_raw_value{%s,smart_id=\"%s\"} %e\n", $2, labels, $1, $10
+  name = tolower($2)
+  if (($1 " " name) in legacy) name = legacy[$1 " " name]
+  printf "%s_value{%s,smart_id=\"%s\"} %d\n", name, labels, $1, $4
+  printf "%s_worst{%s,smart_id=\"%s\"} %d\n", name, labels, $1, $5
+  printf "%s_threshold{%s,smart_id=\"%s\"} %d\n", name, labels, $1, $6
+  printf "%s_raw_value{%s,smart_id=\"%s\"} %e\n", name, labels, $1, $10
 }
 SMARTCTLAWK
 )"

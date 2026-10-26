@@ -1,0 +1,8 @@
+smartctl 7.5 2025-04-30 r5714 [x86_64-linux-6.8.0-147-generic] (local build)
+Copyright (C) 2002-25, Bruce Allen, Christian Franke, www.smartmontools.org
+
+Device is in ACTIVE mode
+SCSI device successfully opened
+
+Use 'smartctl -a' (or '-x') to print SMART (and more) information
+

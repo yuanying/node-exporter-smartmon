@@ -1,0 +1,22 @@
+smartctl 7.5 2025-04-30 r5714 [x86_64-linux-6.8.0-147-generic] (local build)
+Copyright (C) 2002-25, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF INFORMATION SECTION ===
+Vendor:               IET
+Product:              VIRTUAL-DISK
+Revision:             0001
+Compliance:           SPC-3
+User Capacity:        5,368,709,120 bytes [5.36 GB]
+Logical block size:   512 bytes
+LU is thin provisioned, LBPRZ=1
+Logical Unit id:      0x3000000400000001error: Duplicate NAA designator
+Serial number:        000002
+Device type:          disk
+Local Time is:        Mon Oct 26 02:16:28 2026 UTC
+SMART support is:     Available - device has SMART capability.
+SMART support is:     Disabled
+Temperature Warning:  Disabled or Not Supported
+
+=== START OF READ SMART DATA SECTION ===
+SMART Health Status: OK
+

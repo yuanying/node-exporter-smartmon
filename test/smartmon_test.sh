@@ -38,6 +38,11 @@ expect usb usb SMARTMON_USB_TYPES='sat sat,12'
 expect usb-default-types usb
 expect usb-off usb SMARTMON_USB_TYPES=
 expect nvme nvme
+# duchamp on smartctl 7.5: sdb is a SanDisk SSD PLUS 2000GB, whose
+# attributes 199, 233, 241 and 242 the 7.5 drivedb renames; sdd and sdf
+# are Longhorn volumes attached over iSCSI (IET VIRTUAL-DISK), which
+# --scan-open lists.
+expect duchamp duchamp
 
 echo "${failures} failure(s)"
 exit $((failures > 0))

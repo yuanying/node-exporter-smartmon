@@ -1,0 +1,3 @@
+/dev/sdb -d sat # /dev/sdb [SAT], ATA device
+/dev/sdd -d scsi # /dev/sdd, SCSI device
+/dev/sdf -d scsi # /dev/sdf, SCSI device
