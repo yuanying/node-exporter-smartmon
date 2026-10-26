@@ -1,0 +1,15 @@
+smartctl 7.5 2025-04-30 r5714 [x86_64-linux-6.8.0-147-generic] (local build)
+Copyright (C) 2002-25, Bruce Allen, Christian Franke, www.smartmontools.org
+
+smartctl comes with ABSOLUTELY NO WARRANTY. This is free
+software, and you are welcome to redistribute it under
+the terms of the GNU General Public License; either
+version 2, or (at your option) any later version.
+See https://www.gnu.org for further details.
+
+smartmontools release 7.5 dated 2025-04-30 at 07:42:55 UTC
+smartmontools SVN rev 5714 dated 2025-04-30 at 07:43:44
+smartmontools build host: x86_64-alpine-linux-musl
+smartmontools build with: C++11, GCC 15.2.0
+smartmontools configure arguments: [hidden in reproducible builds]
+reproducible build SOURCE_DATE_EPOCH: 1747214110 (2025-05-14 09:15:10)

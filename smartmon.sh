@@ -12,12 +12,24 @@
 
 parse_smartctl_attributes_awk="$(
   cat <<'SMARTCTLAWK'
+BEGIN {
+  # Names a newer drivedb gives to attributes that smartctl 7.2 printed
+  # with the default names, "<ID> <new name>" -> default name. The
+  # metrics keep the default names, so they do not change with smartctl.
+  # smartctl 7.5: SanDisk SSD PLUS 2000GB (Marvell based SanDisk SSDs)
+  legacy["199 sata_crc_error"] = "udma_crc_error_count"
+  legacy["233 total_nand_writes_gib"] = "media_wearout_indicator"
+  legacy["241 total_writes_gib"] = "total_lbas_written"
+  legacy["242 total_reads_gib"] = "total_lbas_read"
+}
 $1 ~ /^ *[0-9]+$/ && $2 ~ /^[a-zA-Z0-9_-]+$/ {
   gsub(/-/, "_");
-  printf "%s_value{%s,smart_id=\"%s\"} %d\n", $2, labels, $1, $4
-  printf "%s_worst{%s,smart_id=\"%s\"} %d\n", $2, labels, $1, $5
-  printf "%s_threshold{%s,smart_id=\"%s\"} %d\n", $2, labels, $1, $6
-  printf "%s_raw_value{%s,smart_id=\"%s\"} %e\n", $2, labels, $1, $10
+  name = tolower($2)
+  if (($1 " " name) in legacy) name = legacy[$1 " " name]
+  printf "%s_value{%s,smart_id=\"%s\"} %d\n", name, labels, $1, $4
+  printf "%s_worst{%s,smart_id=\"%s\"} %d\n", name, labels, $1, $5
+  printf "%s_threshold{%s,smart_id=\"%s\"} %d\n", name, labels, $1, $6
+  printf "%s_raw_value{%s,smart_id=\"%s\"} %e\n", name, labels, $1, $10
 }
 SMARTCTLAWK
 )"
@@ -217,6 +229,19 @@ list_usb_devices() {
   done
 }
 
+# Leaves out of the "<device>|<type>" lines the disks attached over
+# iSCSI (their sysfs path goes through an iSCSI session), such as the
+# Longhorn volumes (IET VIRTUAL-DISK): another host's storage, with no
+# SMART data of their own.
+drop_iscsi_devices() {
+  local device
+  while read -r device; do
+    [[ "$(readlink "${SMARTMON_SYSFS}/block/$(basename "${device%%|*}")")" == */session[0-9]*/* ]] &&
+      continue
+    echo "${device}"
+  done
+}
+
 SMARTCTL="${SMARTCTL:-/usr/sbin/smartctl}"
 SMARTMON_SYSFS="${SMARTMON_SYSFS:-/sys}"
 # Set it empty to read no disk --scan-open does not list
@@ -230,7 +255,7 @@ if [[ "$(expr "${smartctl_version}" : '\([0-9]*\)\..*')" -lt 6 ]]; then
   exit
 fi
 
-device_list="$("${SMARTCTL}" --scan-open | awk '/^\/dev/{print $1 "|" $3}')"
+device_list="$("${SMARTCTL}" --scan-open | awk '/^\/dev/{print $1 "|" $3}' | drop_iscsi_devices)"
 device_list="${device_list}
 $(list_usb_devices "${device_list}")"
 

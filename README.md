@@ -23,6 +23,33 @@ the first type in `SMARTMON_USB_TYPES` the disk answers to
 |---|---|---|
 | `SMARTMON_USB_TYPES` | `sat` | Types to try, separated by spaces, e.g. `sat sat,12`. `sat`, `sat,*` and `usb*` are read as ATA. Set it empty to read no disk `--scan-open` does not list |
 
+## Disks attached over iSCSI
+
+The script leaves out the disks `--scan-open` lists whose sysfs path
+(`/sys/block/<disk>`) goes through an iSCSI session (`.../session<N>/...`).
+They are another host's storage with no SMART data of their own, and
+they come and go with what is attached: since smartctl 7.5, every
+Longhorn volume attached to the node (`IET VIRTUAL-DISK`) is listed.
+
+## Attribute names
+
+The metrics of the ATA attributes are named after the attribute names
+smartctl prints, and only the names in the list of the script are kept.
+A newer drivedb can give a drive's attributes names of their own where
+smartctl 7.2 printed the default ones. The script maps those back to
+the default names, by ID and new name, so that the metrics keep their
+names across smartctl versions:
+
+| ID | smartctl 7.5 | Metric |
+|---|---|---|
+| 199 | `SATA_CRC_Error` | `udma_crc_error_count_*` |
+| 233 | `Total_NAND_Writes_GiB` | `media_wearout_indicator_*` |
+| 241 | `Total_Writes_GiB` | `total_lbas_written_*` |
+| 242 | `Total_Reads_GiB` | `total_lbas_read_*` |
+
+(SanDisk SSD PLUS 2000GB, which smartctl 7.5 reads as one of the
+"Marvell based SanDisk SSDs".)
+
 ## Tests
 
 ```bash

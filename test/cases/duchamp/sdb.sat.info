@@ -1,0 +1,24 @@
+smartctl 7.5 2025-04-30 r5714 [x86_64-linux-6.8.0-147-generic] (local build)
+Copyright (C) 2002-25, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF INFORMATION SECTION ===
+Model Family:     Marvell based SanDisk SSDs
+Device Model:     SanDisk SSD PLUS 2000GB
+Serial Number:    000000000001
+LU WWN Device Id: 5 001b44 000000001
+Firmware Version: UP4504RL
+User Capacity:    2,000,398,934,016 bytes [2.00 TB]
+Sector Size:      512 bytes logical/physical
+Rotation Rate:    Solid State Device
+Form Factor:      2.5 inches
+TRIM Command:     Available, deterministic
+Device is:        In smartctl database 7.5/5706
+ATA Version is:   ACS-3, ACS-2 T13/2015-D revision 3
+SATA Version is:  SATA 3.2, 6.0 Gb/s (current: 6.0 Gb/s)
+Local Time is:    Mon Oct 26 02:16:27 2026 UTC
+SMART support is: Available - device has SMART capability.
+SMART support is: Enabled
+
+=== START OF READ SMART DATA SECTION ===
+SMART overall-health self-assessment test result: PASSED
+
