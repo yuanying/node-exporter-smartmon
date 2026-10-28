@@ -4,11 +4,21 @@ name: Weekly release
 # is built from changed since the latest vX.Y.Z tag. The image is
 # published first and the tag pushed after it, so that no tag is left
 # without its image.
+#
+# vuln-fix-release.yml runs it with bots-only as soon as a fix of
+# vuln-responder is merged: the release is then cut only when every
+# commit since the tag is Renovate's or vuln-responder's, and otherwise
+# left to a person, with the commits that stopped it in the summary.
 on:
   schedule:
     # Every Monday at 09:00 JST.
     - cron: '0 0 * * 1'
   workflow_dispatch:
+    inputs:
+      bots-only:
+        description: 'Release only when every commit since the tag is Renovate''s or vuln-responder''s'
+        type: boolean
+        default: false
 
 permissions: {}
 
@@ -33,7 +43,32 @@ jobs:
       -
         name: Decide the next version
         id: next
-        run: .github/scripts/next-release.sh Dockerfile smartmon.sh >> "$GITHUB_OUTPUT"
+        env:
+          OPTIONS: ${{ inputs.bots-only && '--bots-only' || '' }}
+        run: |
+          # shellcheck disable=SC2086
+          .github/scripts/next-release.sh $OPTIONS Dockerfile smartmon.sh >> "$GITHUB_OUTPUT"
+      -
+        name: Tell why the release was stopped
+        if: steps.next.outputs.blocked != ''
+        env:
+          BLOCKED: ${{ steps.next.outputs.blocked }}
+        run: |
+          {
+            echo "### Not released"
+            echo
+            echo "Only the commits of Renovate and vuln-responder are released"
+            echo "on the merge of a fix. These are not theirs:"
+            echo
+            # shellcheck disable=SC2086
+            git show --no-patch --format='- %h %an <%ae>: %s' $BLOCKED
+            echo
+            echo "To release them, run the weekly release by hand:"
+            echo
+            echo '```'
+            echo "gh workflow run release.yml -R ${GITHUB_REPOSITORY} --ref master"
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
 
   publish:
     needs: check
