@@ -1,0 +1,29 @@
+name: Release a vulnerability fix
+
+# When a fix of vuln-responder (a branch starting with vuln-responder/)
+# is merged into master, runs the weekly release at once with bots-only,
+# so that the fix does not wait for Monday. A tag pushed with the run's
+# token starts no workflow, but a dispatch does, and the release runs
+# from master as it does every week: the image first, then the tag.
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - 'master'
+
+permissions: {}
+
+jobs:
+  dispatch:
+    if: github.event.pull_request.merged == true && startsWith(github.event.pull_request.head.ref, 'vuln-responder/')
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      -
+        name: Run the weekly release with bots-only
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run release.yml -R "$GITHUB_REPOSITORY" --ref master -f bots-only=true
