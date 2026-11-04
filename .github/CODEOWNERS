@@ -1,0 +1,4 @@
+# Every change to the default branch needs one of these to approve it.
+# Renovate's pull requests are merged by GitHub's auto-merge as soon as
+# one does and the required checks pass.
+* @yuanying @penelope-the-operator

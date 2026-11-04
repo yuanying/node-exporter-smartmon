@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "description": "The patch and digest updates Renovate merges once the pull request's checks pass carry fixes and rebuilds rather than new behaviour, and the weekly release then ships them as the next patch version without anyone at the keyboard",
-  "extends": ["github>yuanying/renovate-config", "github>yuanying/renovate-config:automerge-patch"],
+  "description": "Every update gets GitHub's auto-merge through platform-automerge and is merged once a code owner in .github/CODEOWNERS approves it and the test workflow passes, and the weekly release then ships what was merged as the next patch version without anyone at the keyboard",
+  "extends": ["github>yuanying/renovate-config", "github>yuanying/renovate-config:platform-automerge"],
   "packageRules": [
     {
       "description": "The base image is named by a tag that keeps moving (alpine:latest), so a checkout does not say which image a release was built from. Pinning the digest makes the Dockerfile say it, and leaves Renovate to move the digest when the tag is pushed again. The first pin is merged like any digest change",
